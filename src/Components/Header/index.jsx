@@ -1,9 +1,9 @@
-import { createStyles } from "@mantine/core";
+import { createStyles, Header, Navbar } from "@mantine/core";
 import { Link } from "react-router-dom";
 
 
 const useStyles = createStyles((theme) => ({
-  h1: {
+  nav: {
     backgroundColor: theme.colors.blue[6],
     height: '100%',
     margin: 'auto',
@@ -11,22 +11,21 @@ const useStyles = createStyles((theme) => ({
   }
 }))
 
-const Header = (props) => {
+const HeaderComp = (props) => {
   const { classes } = useStyles();
+  
 
   return (
-    <nav>
-      <ul>
-        <li>
-          <Link to='/'>Home</Link>
-        </li>
-        <li>
-          <Link to='/settings'>Settings</Link>
-        </li>
-      </ul>
-    </nav>
+
+    <Header >
+      <Navbar className={classes.nav}>
+        <Link to='/'>Home</Link>
+        <Link to='/settings'>Settings</Link>
+      </Navbar>
+    </Header>
+
   );
 }
 
 
-export default Header;
+export default HeaderComp;

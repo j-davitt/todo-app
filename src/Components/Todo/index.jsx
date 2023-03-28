@@ -3,9 +3,17 @@ import useForm from '../../hooks/form';
 
 import { v4 as uuid } from 'uuid';
 import List from '../List';
-import { Grid } from '@mantine/core';
+import { createStyles, Grid } from '@mantine/core';
+
+
+const useStyles = createStyles((theme) => ({
+  h1: {
+    backgroundColor: theme.colors.gray[8],
+  }
+}));
 
 const Todo = () => {
+  const { classes } = useStyles();
 
   const [defaultValues] = useState({
     difficulty: 4,
@@ -50,9 +58,9 @@ const Todo = () => {
 
   return (
     <>
-      <header data-testid="todo-header">
-        <h1 data-testid="todo-h1">To Do List: {incomplete} items pending</h1>
-      </header>
+
+      <h1 data-testid="todo-h1" className={classes.h1}>To Do List: {incomplete} items pending</h1>
+
       <Grid>
         <Grid.Col xs={12} sm={4}>
           <form onSubmit={handleSubmit}>
