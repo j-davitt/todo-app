@@ -3,8 +3,17 @@ import useForm from '../../hooks/form';
 
 import { v4 as uuid } from 'uuid';
 import List from '../List';
+import { createStyles, Grid } from '@mantine/core';
+
+
+const useStyles = createStyles((theme) => ({
+  h1: {
+    backgroundColor: theme.colors.gray[8],
+  }
+}));
 
 const Todo = () => {
+  const { classes } = useStyles();
 
   const [defaultValues] = useState({
     difficulty: 4,
@@ -49,49 +58,42 @@ const Todo = () => {
 
   return (
     <>
-      <header data-testid="todo-header">
-        <h1 data-testid="todo-h1">To Do List: {incomplete} items pending</h1>
-      </header>
 
-      <form onSubmit={handleSubmit}>
+      <h1 data-testid="todo-h1" className={classes.h1}>To Do List: {incomplete} items pending</h1>
 
-        <h2>Add To Do Item</h2>
+      <Grid>
+        <Grid.Col xs={12} sm={4}>
+          <form onSubmit={handleSubmit}>
 
-        <label>
-          <span>To Do Item</span>
-          <input onChange={handleChange} name="text" type="text" placeholder="Item Details" />
-        </label>
+            <h2>Add To Do Item</h2>
 
-        <label>
-          <span>Assigned To</span>
-          <input onChange={handleChange} name="assignee" type="text" placeholder="Assignee Name" />
-        </label>
+            <label>
+              <span>To Do Item</span>
+              <input onChange={handleChange} name="text" type="text" placeholder="Item Details" />
+            </label>
 
-        <label>
-          <span>Difficulty</span>
-          <input onChange={handleChange} defaultValue={defaultValues.difficulty} type="range" min={1} max={5} name="difficulty" />
-        </label>
+            <label>
+              <span>Assigned To</span>
+              <input onChange={handleChange} name="assignee" type="text" placeholder="Assignee Name" />
+            </label>
 
-        <label>
-          <button type="submit">Add Item</button>
-        </label>
-      </form>
+            <label>
+              <span>Difficulty</span>
+              <input onChange={handleChange} defaultValue={defaultValues.difficulty} type="range" min={1} max={5} name="difficulty" />
+            </label>
 
-      <List
-        list={list}
-        toggleComplete={toggleComplete}
-      />
-
-      {/* {list.map(item => (
-        <div key={item.id}>
-          <p>{item.text}</p>
-          <p><small>Assigned to: {item.assignee}</small></p>
-          <p><small>Difficulty: {item.difficulty}</small></p>
-          <div onClick={() => toggleComplete(item.id)}>Complete: {item.complete.toString()}</div>
-          <hr />
-        </div>
-      ))} */}
-
+            <label>
+              <button type="submit">Add Item</button>
+            </label>
+          </form>
+        </Grid.Col>
+        <Grid.Col xs={12} sm={8}>
+          <List
+            list={list}
+            toggleComplete={toggleComplete}
+          />
+        </Grid.Col>
+      </Grid>
     </>
   );
 };

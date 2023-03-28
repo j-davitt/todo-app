@@ -11,7 +11,7 @@ const List = (props) => {
 
   const totalPages = Math.ceil(props.list.length / pageItems);
 
-  const displayItems = showCompleted 
+  const displayItems = showCompleted
     ? props.list
     : props.list.filter((item) => !item.complete);
 

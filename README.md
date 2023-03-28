@@ -12,6 +12,8 @@ Jordan Covington
 
 To Do List Manager Phase 1: Incorporate configuration settings to the application.
 
+Phase 2: Allow user to make changes to settings.
+
 ### Links and Resources
 
 - [GitHub Actions ci/cd](https://github.com/j-davitt/todo-app/actions)
