@@ -10,7 +10,7 @@ To Do List Manager Phase 1: Incorporate configuration settings to the applicatio
 
 ### Links and Resources
 
-- [GitHub Actions ci/cd](https://github.com/j-davitt/todo-app/actions/new)
+- [GitHub Actions ci/cd](https://github.com/j-davitt/todo-app/actions)
 
 #### How to initialize/run your application (where applicable)
 
