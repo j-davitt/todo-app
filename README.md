@@ -4,6 +4,10 @@
 
 ### Author: Joe Davitt
 
+Collaborators:
+Adrienne Frey
+Jordan Covington
+
 ### Problem Domain  
 
 To Do List Manager Phase 1: Incorporate configuration settings to the application.
