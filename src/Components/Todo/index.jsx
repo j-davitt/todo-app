@@ -3,7 +3,7 @@ import useForm from '../../hooks/form';
 
 // import { v4 as uuid } from 'uuid';
 import List from '../List';
-import { createStyles, Grid } from '@mantine/core';
+import { Button, createStyles, Grid, Slider, Text, TextInput } from '@mantine/core';
 import Auth from '../Auth';
 import axios from 'axios';
 
@@ -85,7 +85,7 @@ const Todo = () => {
   useEffect(() => {
     const getData = async () => {
       let response = await axios.get('https://api-js401.herokuapp.com/api/v1/todo');
-      
+
       setList(response.data.results);
     };
     getData();
@@ -103,24 +103,30 @@ const Todo = () => {
 
               <h2>Add To Do Item</h2>
 
-              <label>
-                <span>To Do Item</span>
-                <input onChange={handleChange} name="text" type="text" placeholder="Item Details" />
-              </label>
+              <TextInput
+                onChange={handleChange}
+                name="text"
+                type="text"
+                placeholder="Item Details"
+              />
 
-              <label>
-                <span>Assigned To</span>
-                <input onChange={handleChange} name="assignee" type="text" placeholder="Assignee Name" />
-              </label>
+              <TextInput
+                onChange={handleChange}
+                name="assignee"
+                type="text"
+                placeholder="Assignee Name"
+              />
 
-              <label>
-                <span>Difficulty</span>
-                <input onChange={handleChange} defaultValue={defaultValues.difficulty} type="range" min={1} max={5} name="difficulty" />
-              </label>
+              <Text>Difficulty Rating</Text>
+              <Slider
+                onChange={handleChange}
+                defaultValue={defaultValues.difficulty}
+                min={1}
+                max={5}
+                name="difficulty"
+              />
 
-              <label>
-                <button type="submit">Add Item</button>
-              </label>
+              <Button type="submit">Add Item</Button>
             </form>
           </Grid.Col>
 
