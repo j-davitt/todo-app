@@ -4,6 +4,7 @@ import useForm from '../../hooks/form';
 import { v4 as uuid } from 'uuid';
 import List from '../List';
 import { createStyles, Grid } from '@mantine/core';
+import Auth from '../Auth';
 
 
 const useStyles = createStyles((theme) => ({
@@ -62,35 +63,40 @@ const Todo = () => {
       <h1 data-testid="todo-h1" className={classes.h1}>To Do List: {incomplete} items pending</h1>
 
       <Grid>
-        <Grid.Col xs={12} sm={4}>
-          <form onSubmit={handleSubmit}>
+        <Auth capability="create">
+          <Grid.Col xs={12} sm={4}>
+            <form onSubmit={handleSubmit}>
 
-            <h2>Add To Do Item</h2>
+              <h2>Add To Do Item</h2>
 
-            <label>
-              <span>To Do Item</span>
-              <input onChange={handleChange} name="text" type="text" placeholder="Item Details" />
-            </label>
+              <label>
+                <span>To Do Item</span>
+                <input onChange={handleChange} name="text" type="text" placeholder="Item Details" />
+              </label>
 
-            <label>
-              <span>Assigned To</span>
-              <input onChange={handleChange} name="assignee" type="text" placeholder="Assignee Name" />
-            </label>
+              <label>
+                <span>Assigned To</span>
+                <input onChange={handleChange} name="assignee" type="text" placeholder="Assignee Name" />
+              </label>
 
-            <label>
-              <span>Difficulty</span>
-              <input onChange={handleChange} defaultValue={defaultValues.difficulty} type="range" min={1} max={5} name="difficulty" />
-            </label>
+              <label>
+                <span>Difficulty</span>
+                <input onChange={handleChange} defaultValue={defaultValues.difficulty} type="range" min={1} max={5} name="difficulty" />
+              </label>
 
-            <label>
-              <button type="submit">Add Item</button>
-            </label>
-          </form>
-        </Grid.Col>
+              <label>
+                <button type="submit">Add Item</button>
+              </label>
+            </form>
+          </Grid.Col>
+
+        </Auth>
+
         <Grid.Col xs={12} sm={8}>
           <List
             list={list}
             toggleComplete={toggleComplete}
+            deleteItem={deleteItem}
           />
         </Grid.Col>
       </Grid>
