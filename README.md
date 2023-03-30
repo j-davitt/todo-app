@@ -16,6 +16,8 @@ Phase 2: Allow user to make changes to settings.
 
 Phase 3: Allow user to login and logout.
 
+Phase 4: link site with API for user and list management.
+
 ### Links and Resources
 
 - [GitHub Actions ci/cd](https://github.com/j-davitt/todo-app/actions)
@@ -33,6 +35,9 @@ Phase 3: Allow user to login and logout.
 #### How to use your library (where applicable)
 
 #### Features / Routes
+
+- `/` - Home page
+- `/settings` - Settings page
 
 #### Tests
 
