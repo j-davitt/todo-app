@@ -26,13 +26,13 @@ const List = (props) => {
 
   return (
     <>
-      <If condition={loggedIn}>
-        <Then>
-          {finalDisplayItems.map(item => (
+      {/* <If condition={loggedIn}>
+        <Then> */}
+          {finalDisplayItems.map((item, idx) => (
             <div key={item.id}>
-              <p>{item.text}</p>
-              <p><small>Assigned to: {item.assignee}</small></p>
-              <p><small>Difficulty: {item.difficulty}</small></p>
+              <p data-testid={`item-text-${idx}`}>{item.text}</p>
+              <p data-testid={`item-assignee-${idx}`}><small>Assigned to: {item.assignee}</small></p>
+              <p data-testid={`item-difficulty-${idx}`}><small>Difficulty: {item.difficulty}</small></p>
               <If condition={loggedIn && can('update')}>
                 <Then>
                   <div onClick={() => props.toggleComplete(item.id)}>Complete: {item.complete.toString()}</div>
@@ -46,9 +46,9 @@ const List = (props) => {
               </Auth>
             </div>
           ))}
-        </Then>
+        {/* </Then>
 
-      </If>
+      </If> */}
 
       <Pagination
         total={totalPages}
