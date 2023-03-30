@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import cookie from 'react-cookies';
 import jwt_decode from 'jwt-decode';
+import axios from 'axios';
 
 const testUsers = {
   Administrator: {
@@ -51,12 +52,24 @@ const LoginProvider = ({ children }) => {
   }
 
   const login = async (username, password) => {
-    // let { loggedIn, token, user } = this.state;
-    let auth = testUsers[username];
 
-    if (auth && auth.password === password) {
+    // let auth = testUsers[username];
+    let config = {
+      baseURL: 'https://api-js401.herokuapp.com',
+      method: 'post',
+      url: '/signin',
+      auth: { username, password },
+    }
+
+    let response = await axios(config);
+    console.log('Response', response);
+
+    let user = response.data.user;
+    let token = response.data.token;
+
+    if (token) {
       try {
-        validateToken(auth.token);
+        validateToken(token);
       } catch (e) {
         setLoginState(loggedIn, token, user, e);
         console.error(e);

@@ -5,6 +5,7 @@ import { v4 as uuid } from 'uuid';
 import List from '../List';
 import { createStyles, Grid } from '@mantine/core';
 import Auth from '../Auth';
+import axios from 'axios';
 
 
 const useStyles = createStyles((theme) => ({
@@ -56,6 +57,14 @@ const Todo = () => {
     // disable code used to avoid linter warning 
     // eslint-disable-next-line react-hooks/exhaustive-deps 
   }, [list]);
+
+  useEffect(() => {
+    const getData = async () => {
+      let response = await axios.get('https://api-js401.herokuapp.com/api/v1/todo');
+      setList(response.data.results);
+    };
+    getData();
+  }, [])
 
   return (
     <>
