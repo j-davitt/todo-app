@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { SettingsContext } from "../../Context/Settings";
-import { createStyles, Grid } from '@mantine/core';
+import { Button, Checkbox, createStyles, Grid, NumberInput, TextInput } from '@mantine/core';
 
 const useStyles = createStyles((theme) => ({
   h1: {
@@ -46,21 +46,27 @@ const Settings = (props) => {
         <section className={classes.section}>
         <h3>Update Settings</h3>
           <form onSubmit={handleSubmit} className={classes.form} >
-            <label>
-              <span>Show Completed?</span>
-              <input type="checkbox" name="showCompleted" checked={showCompleted} onChange={(e) => setShowCompleted(e.target.checked)} />
-            </label>
-            <label>
-              <span>Items per page</span>
-              <input type="number" name="pageItems" value={pageItems} onChange={(e) => setPageItems(e.target.value)} />
-            </label>
-            <label>
-              <span>Sort by</span>
-              <input type="text" name="sort" value={sort} onChange={(e) => setSort(e.target.value)} />
-            </label>
-            <label>
-              <button type="submit">Update Settings</button>
-            </label>
+            <Checkbox 
+            label="Show Completed?"
+            checked={showCompleted} 
+            onChange={(e) => setShowCompleted(e.target.checked)}
+            />
+            
+            <NumberInput 
+            label="Items per page"
+            placeholder="3"
+            value={pageItems} 
+            onChange={(e) => setPageItems(e.target.value)}
+            name="pageItems"
+            />
+            <TextInput  
+            label="Sort by"
+            placeholder="difficulty"
+            value={sort}
+            onChange={(e) => setSort(e.target.value)}
+            />
+
+            <Button type="submit">Update Settings</Button>
           </form>
         </section>
         {showUpdate &&
